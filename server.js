@@ -1,6 +1,20 @@
 const mosca = require('mosca');
-const settings = {host: 'localhost', port: 9883};
-const server = new mosca.Server(settings);
+
+const settingsServer = {
+    host: 'localhost',
+    port: 9883,
+    persistence: {
+      factory: mosca.persistence.Redis,
+      host: 'localhost',
+      port: 6379,
+      ttl: {
+        subscriptions: 1000000,
+        packets: 1000000
+      }
+    }
+};
+
+const server = new mosca.Server(settingsServer);
 
 server.on('ready', () => {
     console.info('MQTT server ready.');
@@ -8,6 +22,10 @@ server.on('ready', () => {
 
 server.on('clientConnected', (client) => {
     console.info('Client connect: %s', client.id);
+});
+
+server.on('clientDisconnecting', (client) => {
+    console.log('Client Disconnecting : ', client.id);
 });
 
 server.on('clientDisconnected', (client) => {
