@@ -3,7 +3,8 @@ const mqttTopic = 'example/mqtt';
 const mqtt = require('mqtt');
 
 const options = {
-    clientId: 'example_publish' + Math.random().toString(16).substr(2, 8)
+    clientId: 'example_publish',
+    //clientId: 'example_publish' + Math.random().toString(16).substr(2, 8)
 };
 
 const client = mqtt.connect(mqttLocation, options);
@@ -14,9 +15,9 @@ client.on('connect', (packet) => {
     let message = new Buffer.from('New String');
     //let message = 'New String';
 
-    client.publish(mqttTopic, message, (error) => {
+    client.publish(mqttTopic, message, {qos: 1}, (error) => {
 
-        if (error !== undefined) {
+        if (error !== undefined && error !== null) {
             throw new Error(error);
         }
 
