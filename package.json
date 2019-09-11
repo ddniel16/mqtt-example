@@ -1,15 +1,23 @@
 {
-    "name": "mqtt",
-    "version": "1.0.0",
-    "description": "",
-    "main": "server.js",
-    "scripts": {
-        "server": "node server.js",
-        "subscribe": "node subscribe.js",
-        "publish": "node publish.js"
-    },
-    "dependencies": {
-        "mosca": "^2.8.3",
-        "mqtt": "^2.18.8"
-    }
+  "name": "mqtt-example",
+  "version": "1.0.0",
+  "description": "MQTT server, subscriber &amp; publisher",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ddniel16/mqtt-example.git"
+  },
+  "author": "ddniel16",
+  "license": "EUPL V.1.1",
+  "bugs": {
+    "url": "https://github.com/ddniel16/mqtt-example/issues"
+  },
+  "homepage": "https://github.com/ddniel16/mqtt-example#readme",
+  "dependencies": {
+    "mosca": "^2.8.3",
+    "mqtt": "^3.0.0",
+    "redis": "^2.8.0"
+  }
 }
